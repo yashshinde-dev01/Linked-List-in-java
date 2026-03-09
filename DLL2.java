@@ -189,6 +189,46 @@ public class DLL2 {
         tail.prev=node;
         node.prev=back;
     }
+    public void InsertbeforeKth(int value,int k){
+        if(head==null && tail==null){
+            InsertBeforeHead(value);
+            return;
+        }
+        Node node=new Node(value);
+        int cnt=0;
+        Node temp=head;
+        while(temp!=null){
+            cnt++;
+            if(cnt==k){
+              break;
+            }
+            temp=temp.next;
+        }
+        Node before=temp.prev;
+        before.next=node;
+        node.next=temp;
+        temp.prev=node;
+        node.prev=before;
+    }
+    public void InsertbeforeNode(int value,int digit){
+        if(head==null && tail==null){
+            InsertBeforeHead(digit);
+            return;
+        }
+        Node node=new Node(digit);
+        Node temp=head;
+        while(temp!=null){
+            if(temp.val==value){
+                break;
+            }
+            temp=temp.next;
+        }
+        Node before=temp.prev;
+        before.next=node;
+        node.next=temp;
+        temp.prev=node;
+        node.prev=before;
+    }
 
     public static void main(String[] args) {
         int[]arr={2,3,4,1,5,6,7};
@@ -200,6 +240,8 @@ public class DLL2 {
         l.deleteNode(1);
         l.InsertBeforeHead(99);
         l.InsertBeforeTail2(101);
+        l.InsertbeforeKth(44,5);
+        l.InsertbeforeNode(101,91);
         l.print();
 
     }
